@@ -8,11 +8,13 @@ import { materialModule } from './material.module';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr'
+import { HttpClientModule } from '@angular/common/http'
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-
+RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -21,7 +23,8 @@ import { ToastrModule } from 'ngx-toastr'
     materialModule,
     FormsModule,
     ReactiveFormsModule,
-    ToastrModule
+    ToastrModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
