@@ -12,22 +12,22 @@ import { Router } from '@angular/router';
 export class RegisterComponent {
   constructor(private builder: FormBuilder, private toastr: ToastrService, private authservice: AuthService, private router: Router) { }
 
-  registerForm = this.builder.group({
-    id: this.builder.control([''],Validators.required),
+  registerform = this.builder.group({
+    id: this.builder.control([''], Validators.compose([Validators.required, Validators.minLength(2)])),
     name: this.builder.control([''], Validators.required),
-    password: this.builder.control([''], Validators.required),
-    email: this.builder.control([''], Validators.required),
-    gender: this.builder.control(['male'],Validators.required),
+    password: this.builder.control([''], Validators.compose([Validators.required, Validators.pattern('(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}')])),
+    email: this.builder.control([''], Validators.compose([Validators.required, Validators.email])),
+    gender: this.builder.control(['male']),
     role: this.builder.control(['']),
     isactive: this.builder.control(false)
   })
 
-  proceedRegistration() {
-    if (this.registerForm.valid) {
-      this.authservice.proceedRegister(this.registerForm.value).subscribe((res) => {
+  proceedRegistration(data:any) {
+    if (this.registerform.valid) {
+      this.authservice.proceedRegister(this.registerform.value).subscribe((res) => {
         this.toastr.success("Please contact admin for enable access", "Register Successfully")
         this.router.navigate(['login'])
-        console.warn(this.registerForm.value);
+        console.warn(this.registerform.value);
         
       })
     } else {
