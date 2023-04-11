@@ -28,7 +28,7 @@ export class RegisterComponent {
         this.toastr.success("Please contact admin for enable access", "Register Successfully")
         this.router.navigate(['login'])
         console.warn(this.registerform.value);
-        
+        this.registerform.reset();
       })
     } else {
       this.toastr.warning('Please Enter Valid Data')
