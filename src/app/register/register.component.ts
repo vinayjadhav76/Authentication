@@ -13,13 +13,13 @@ export class RegisterComponent {
   constructor(private builder: FormBuilder, private toastr: ToastrService, private authservice: AuthService, private router: Router) { }
 
   registerForm = this.builder.group({
-    id: new FormControl([''],Validators.required),
-    name: new FormControl([''], Validators.required),
-    password: new FormControl([''], Validators.required),
-    email: new FormControl([''], Validators.required),
-    gender: new FormControl(['male'],Validators.required),
-    role: new FormControl(['']),
-    isactive: new FormControl(false)
+    id: this.builder.control([''],Validators.required),
+    name: this.builder.control([''], Validators.required),
+    password: this.builder.control([''], Validators.required),
+    email: this.builder.control([''], Validators.required),
+    gender: this.builder.control(['male'],Validators.required),
+    role: this.builder.control(['']),
+    isactive: this.builder.control(false)
   })
 
   proceedRegistration() {
